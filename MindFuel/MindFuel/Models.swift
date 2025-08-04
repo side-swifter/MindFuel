@@ -8,6 +8,89 @@
 import Foundation
 import SwiftData
 
+// MARK: - Enums
+enum TimeframeSelection: String, CaseIterable {
+    case today = "Today"
+    case thisWeek = "This Week"
+    case thisMonth = "This Month"
+    
+    var displayName: String {
+        return self.rawValue
+    }
+}
+
+enum AppCategory: String, CaseIterable, Codable {
+    case social = "Social Media"
+    case entertainment = "Entertainment"
+    case productivity = "Productivity"
+    case education = "Education"
+    case health = "Health & Fitness"
+    case news = "News"
+    case games = "Games"
+    case shopping = "Shopping"
+    case utilities = "Utilities"
+    case unknown = "Unknown"
+    
+    var displayName: String {
+        return self.rawValue
+    }
+    
+    var wellnessImpact: WellnessImpact {
+        switch self {
+        case .social, .entertainment, .games:
+            return .negative
+        case .education, .health, .productivity:
+            return .positive
+        case .news, .utilities:
+            return .neutral
+        case .shopping, .unknown:
+            return .neutral
+        }
+    }
+    
+    var color: String {
+        switch wellnessImpact {
+        case .positive: return "green"
+        case .neutral: return "gray"
+        case .negative: return "red"
+        }
+    }
+}
+
+enum WellnessImpact: String, Codable {
+    case positive = "Positive"
+    case neutral = "Neutral"
+    case negative = "Negative"
+}
+
+enum AlertSeverity: String, CaseIterable, Codable {
+    case low = "Low"
+    case medium = "Medium"
+    case high = "High"
+    case critical = "Critical"
+    
+    var color: String {
+        switch self {
+        case .low: return "blue"
+        case .medium: return "yellow"
+        case .high: return "orange"
+        case .critical: return "red"
+        }
+    }
+}
+
+enum GoalType: String, CaseIterable, Codable {
+    case reduceScreenTime = "Reduce Screen Time"
+    case limitAppUsage = "Limit App Usage"
+    case increaseProductivity = "Increase Productivity"
+    case digitalDetox = "Digital Detox"
+    case improveBalance = "Improve Balance"
+    
+    var displayName: String {
+        return self.rawValue
+    }
+}
+
 // MARK: - App Usage Model
 @Model
 final class AppUsage {
@@ -108,67 +191,4 @@ final class WellnessGoal {
     }
 }
 
-// MARK: - Enums
-enum AppCategory: String, CaseIterable, Codable {
-    case social = "Social Media"
-    case entertainment = "Entertainment"
-    case productivity = "Productivity"
-    case education = "Education"
-    case health = "Health & Fitness"
-    case news = "News"
-    case games = "Games"
-    case shopping = "Shopping"
-    case utilities = "Utilities"
-    case unknown = "Unknown"
-    
-    var wellnessImpact: WellnessImpact {
-        switch self {
-        case .social, .entertainment, .games:
-            return .negative
-        case .education, .health, .productivity:
-            return .positive
-        case .news, .utilities:
-            return .neutral
-        case .shopping, .unknown:
-            return .neutral
-        }
-    }
-    
-    var color: String {
-        switch wellnessImpact {
-        case .positive: return "green"
-        case .neutral: return "gray"
-        case .negative: return "red"
-        }
-    }
-}
 
-enum WellnessImpact: String, Codable {
-    case positive = "Positive"
-    case neutral = "Neutral"
-    case negative = "Negative"
-}
-
-enum AlertSeverity: String, CaseIterable, Codable {
-    case low = "Low"
-    case medium = "Medium"
-    case high = "High"
-    case critical = "Critical"
-    
-    var color: String {
-        switch self {
-        case .low: return "blue"
-        case .medium: return "yellow"
-        case .high: return "orange"
-        case .critical: return "red"
-        }
-    }
-}
-
-enum GoalType: String, CaseIterable, Codable {
-    case reduceScreenTime = "Reduce Screen Time"
-    case limitAppUsage = "Limit App Usage"
-    case increaseProductivity = "Increase Productivity"
-    case digitalDetox = "Digital Detox"
-    case improveBalance = "Improve Balance"
-}

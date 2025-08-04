@@ -2,7 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<!-- Removed CloudKit and Push Notification entitlements for basic build -->
-	<!-- Can be re-enabled later when implementing full features -->
+	<!-- DeviceActivity entitlements removed for development -->
+	<!-- These require special Apple approval for production -->
+	<!-- For development, we'll use mock data instead -->
 </dict>
 </plist>

@@ -7,7 +7,6 @@
 
 import SwiftUI
 import SwiftData
-import UIKit
 
 struct DashboardView: View {
     @Environment(\.modelContext) private var modelContext
@@ -45,8 +44,10 @@ struct DashboardView: View {
                 .padding()
             }
             .navigationTitle("")
+#if os(iOS)
             .navigationBarHidden(true)
-            .background(Color(UIColor.systemGroupedBackground))
+#endif
+            .background(.background)
             .sheet(isPresented: $showingAlerts) {
                 AlertsView()
             }
@@ -55,23 +56,12 @@ struct DashboardView: View {
     
     private var headerView: some View {
         VStack(spacing: 12) {
-            // Logo and App Name
+            // Main Logo
             HStack {
-                Image("Mindfuel Icon")
+                Image("MindFuelLogo")
                     .resizable()
-                    .frame(width: 40, height: 40)
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                
-                VStack(alignment: .leading) {
-                    Text("MindFuel")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .foregroundColor(.primary)
-                    
-                    Text("Digital Wellness Dashboard")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: 80)
                 
                 Spacer()
                 
@@ -87,7 +77,7 @@ struct DashboardView: View {
             wellnessScoreView
         }
         .padding()
-        .background(Color(UIColor.systemBackground))
+        .background(.background)
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 2)
     }
@@ -217,7 +207,7 @@ struct DashboardView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
             }
         }
-        .background(Color(UIColor.systemBackground))
+        .background(.background)
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 2)
     }
@@ -241,7 +231,7 @@ struct DashboardView: View {
             .padding(.horizontal)
         }
         .padding(.vertical)
-        .background(Color(UIColor.systemBackground))
+        .background(.background)
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 2)
     }
@@ -273,7 +263,7 @@ struct DashboardView: View {
             }
         }
         .padding(.vertical)
-        .background(Color(UIColor.systemBackground))
+        .background(.background)
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 2)
     }
@@ -293,7 +283,7 @@ struct DashboardView: View {
             .padding(.horizontal)
         }
         .padding(.vertical)
-        .background(Color(UIColor.systemBackground))
+        .background(.background)
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 2)
     }
@@ -380,7 +370,7 @@ struct StatCard: View {
             .frame(maxWidth: .infinity, alignment: .leading)
         }
         .padding()
-        .background(Color(UIColor.systemBackground))
+        .background(.background)
         .clipShape(RoundedRectangle(cornerRadius: 12))
         .shadow(color: .black.opacity(0.05), radius: 3, x: 0, y: 1)
     }
@@ -415,7 +405,7 @@ struct CategoryCard: View {
                 .foregroundColor(.secondary)
         }
         .padding()
-        .background(Color(UIColor.secondarySystemBackground))
+        .background(.regularMaterial)
         .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }
@@ -496,7 +486,7 @@ struct AlertPreviewCard: View {
         }
         .padding()
         .frame(width: 200)
-        .background(Color(UIColor.secondarySystemBackground))
+        .background(.regularMaterial)
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }

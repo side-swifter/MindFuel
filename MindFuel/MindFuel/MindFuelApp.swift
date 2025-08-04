@@ -10,6 +10,8 @@ import SwiftData
 
 @main
 struct MindFuelApp: App {
+    @State private var isOnboardingComplete = UserDefaults.standard.bool(forKey: "onboardingComplete")
+    
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             AppUsage.self,
@@ -28,8 +30,13 @@ struct MindFuelApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainTabView()
+            if isOnboardingComplete {
+                MainTabView()
+                    .modelContainer(sharedModelContainer)
+            } else {
+                OnboardingView(isOnboardingComplete: $isOnboardingComplete)
+                    .modelContainer(sharedModelContainer)
+            }
         }
-        .modelContainer(sharedModelContainer)
     }
 }

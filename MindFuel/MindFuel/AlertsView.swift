@@ -7,7 +7,6 @@
 
 import SwiftUI
 import SwiftData
-import UIKit
 
 struct AlertsView: View {
     @Environment(\.modelContext) private var modelContext
@@ -229,7 +228,7 @@ struct AlertRowView: View {
         .buttonStyle(PlainButtonStyle())
         .background(
             RoundedRectangle(cornerRadius: 12)
-                .fill(isDismissed ? Color(UIColor.systemGray6) : Color(UIColor.systemBackground))
+                .fill(isDismissed ? Color(red: 0.95, green: 0.95, blue: 0.97) : Color.primary.opacity(0.1))
                 .shadow(
                     color: isDismissed ? .clear : .black.opacity(0.05),
                     radius: 3,
@@ -404,7 +403,7 @@ struct AlertDetailView: View {
                         Spacer()
                     }
                     .padding()
-                    .background(Color(UIColor.systemGray6))
+                    .background(.regularMaterial)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                 }
             }
@@ -438,7 +437,7 @@ struct AlertDetailView: View {
                 }
                 .frame(maxWidth: .infinity)
                 .padding()
-                .background(Color(UIColor.systemGray5))
+                .background(.regularMaterial)
                 .foregroundColor(.primary)
                 .clipShape(RoundedRectangle(cornerRadius: 12))
             }
@@ -456,7 +455,7 @@ struct AlertDetailView: View {
     
     private func toggleDismissed() {
         isDismissed.toggle()
-        var updatedAlert = alert
+        let updatedAlert = alert
         updatedAlert.dismissed = isDismissed
         onUpdate(updatedAlert)
         dismiss()

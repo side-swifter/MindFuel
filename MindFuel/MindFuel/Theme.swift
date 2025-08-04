@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import UIKit
 
 // MARK: - Brand Colors
 extension Color {
@@ -82,7 +81,7 @@ struct MindFuelShadow {
 struct MindFuelCardStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .background(Color(UIColor.systemBackground))
+            .background(.background)
             .clipShape(RoundedRectangle(cornerRadius: MindFuelRadius.md))
             .shadow(
                 color: MindFuelShadow.light,
