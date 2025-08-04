@@ -87,7 +87,7 @@ final class DailyWellnessSummary {
 final class WellnessGoal {
     var id: String
     var title: String
-    var description: String
+    var goalDescription: String
     var targetValue: Double // Could be time limit, usage reduction, etc.
     var currentValue: Double
     var goalType: GoalType
@@ -98,7 +98,7 @@ final class WellnessGoal {
     init(title: String, description: String, targetValue: Double, goalType: GoalType, deadline: Date? = nil) {
         self.id = UUID().uuidString
         self.title = title
-        self.description = description
+        self.goalDescription = description
         self.targetValue = targetValue
         self.currentValue = 0.0
         self.goalType = goalType

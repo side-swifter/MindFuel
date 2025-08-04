@@ -7,7 +7,6 @@
 
 import SwiftUI
 import SwiftData
-import Charts
 
 struct DashboardView: View {
     @Environment(\.modelContext) private var modelContext
@@ -175,13 +174,38 @@ struct DashboardView: View {
                 .padding(.horizontal)
             
             if !todaysAppUsages.isEmpty {
-                Chart(Array(todaysAppUsages.prefix(5).enumerated()), id: \.offset) { index, usage in
-                    BarMark(
-                        x: .value("Time", usage.totalTimeSpent / 60),
-                        y: .value("App", usage.appName)
-                    )
-                    .foregroundStyle(Color(usage.category.color))
-                    .opacity(0.8)
+                VStack(spacing: 12) {
+                    ForEach(Array(todaysAppUsages.prefix(5)), id: \.appName) { usage in
+                        HStack {
+                            Text(usage.appName)
+                                .font(.subheadline)
+                                .frame(width: 80, alignment: .leading)
+                                .lineLimit(1)
+                            
+                            GeometryReader { geometry in
+                                ZStack(alignment: .leading) {
+                                    Rectangle()
+                                        .fill(Color.gray.opacity(0.2))
+                                        .frame(height: 8)
+                                        .clipShape(RoundedRectangle(cornerRadius: 4))
+                                    
+                                    Rectangle()
+                                        .fill(Color(usage.category.color))
+                                        .frame(
+                                            width: max(20, geometry.size.width * CGFloat(usage.totalTimeSpent / totalScreenTime)),
+                                            height: 8
+                                        )
+                                        .clipShape(RoundedRectangle(cornerRadius: 4))
+                                }
+                            }
+                            .frame(height: 8)
+                            
+                            Text(usage.totalTimeSpent.formattedTime)
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                                .frame(width: 50, alignment: .trailing)
+                        }
+                    }
                 }
                 .frame(height: 200)
                 .padding()

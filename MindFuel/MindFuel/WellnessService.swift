@@ -7,8 +7,8 @@
 
 import Foundation
 import SwiftData
-import FamilyControls
-import DeviceActivity
+// Note: FamilyControls and DeviceActivity imports removed for initial build
+// Will be added back when implementing actual Screen Time API integration
 
 @Observable
 class WellnessService {

@@ -73,7 +73,7 @@ struct MindFuelShadow {
     static let heavy = Color.black.opacity(0.2)
     
     static let small = (radius: CGFloat(3), x: CGFloat(0), y: CGFloat(1))
-    static let medium = (radius: CGFloat(5), x: CGFloat(0), y: CGFloat(2))
+    static let mediumRadius = (radius: CGFloat(5), x: CGFloat(0), y: CGFloat(2))
     static let large = (radius: CGFloat(10), x: CGFloat(0), y: CGFloat(4))
 }
 
