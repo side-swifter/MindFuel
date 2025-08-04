@@ -45,7 +45,7 @@ struct DashboardView: View {
             }
             .navigationTitle("")
             .navigationBarHidden(true)
-            .background(Color(.systemGroupedBackground))
+            .background(Color(UIColor.systemGroupedBackground))
             .sheet(isPresented: $showingAlerts) {
                 AlertsView()
             }
@@ -86,7 +86,7 @@ struct DashboardView: View {
             wellnessScoreView
         }
         .padding()
-        .background(Color(.systemBackground))
+        .background(Color(UIColor.systemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 2)
     }
@@ -216,7 +216,7 @@ struct DashboardView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
             }
         }
-        .background(Color(.systemBackground))
+        .background(Color(UIColor.systemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 2)
     }
@@ -240,7 +240,7 @@ struct DashboardView: View {
             .padding(.horizontal)
         }
         .padding(.vertical)
-        .background(Color(.systemBackground))
+        .background(Color(UIColor.systemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 2)
     }
@@ -272,7 +272,7 @@ struct DashboardView: View {
             }
         }
         .padding(.vertical)
-        .background(Color(.systemBackground))
+        .background(Color(UIColor.systemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 2)
     }
@@ -292,7 +292,7 @@ struct DashboardView: View {
             .padding(.horizontal)
         }
         .padding(.vertical)
-        .background(Color(.systemBackground))
+        .background(Color(UIColor.systemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 2)
     }
@@ -379,7 +379,7 @@ struct StatCard: View {
             .frame(maxWidth: .infinity, alignment: .leading)
         }
         .padding()
-        .background(Color(.systemBackground))
+        .background(Color(UIColor.systemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 12))
         .shadow(color: .black.opacity(0.05), radius: 3, x: 0, y: 1)
     }
@@ -414,7 +414,7 @@ struct CategoryCard: View {
                 .foregroundColor(.secondary)
         }
         .padding()
-        .background(Color(.secondarySystemBackground))
+        .background(Color(UIColor.secondarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }
@@ -495,7 +495,7 @@ struct AlertPreviewCard: View {
         }
         .padding()
         .frame(width: 200)
-        .background(Color(.secondarySystemBackground))
+        .background(Color(UIColor.secondarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }

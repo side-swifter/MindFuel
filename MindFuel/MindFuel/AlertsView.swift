@@ -48,8 +48,11 @@ struct AlertsView: View {
                 }
             }
             .navigationTitle("Wellness Alerts")
+#if os(iOS)
             .navigationBarTitleDisplayMode(.large)
+#endif
             .toolbar {
+#if os(iOS)
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Close") {
                         dismiss()
@@ -64,6 +67,22 @@ struct AlertsView: View {
                         .foregroundColor(.red)
                     }
                 }
+#else
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Close") {
+                        dismiss()
+                    }
+                }
+                
+                if !activeAlerts.isEmpty {
+                    ToolbarItem(placement: .primaryAction) {
+                        Button("Dismiss All") {
+                            dismissAllAlerts()
+                        }
+                        .foregroundColor(.red)
+                    }
+                }
+#endif
             }
         }
         .sheet(isPresented: $showingDetailSheet) {
@@ -209,7 +228,7 @@ struct AlertRowView: View {
         .buttonStyle(PlainButtonStyle())
         .background(
             RoundedRectangle(cornerRadius: 12)
-                .fill(isDismissed ? Color(.systemGray6) : Color(.systemBackground))
+                .fill(isDismissed ? Color(UIColor.systemGray6) : Color(UIColor.systemBackground))
                 .shadow(
                     color: isDismissed ? .clear : .black.opacity(0.05),
                     radius: 3,
@@ -255,8 +274,11 @@ struct AlertDetailView: View {
                 .padding()
             }
             .navigationTitle("Wellness Alert")
+#if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+#endif
             .toolbar {
+#if os(iOS)
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Close") {
                         dismiss()
@@ -269,6 +291,20 @@ struct AlertDetailView: View {
                     }
                     .foregroundColor(isDismissed ? .blue : .red)
                 }
+#else
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Close") {
+                        dismiss()
+                    }
+                }
+                
+                ToolbarItem(placement: .primaryAction) {
+                    Button(isDismissed ? "Undismiss" : "Dismiss") {
+                        toggleDismissed()
+                    }
+                    .foregroundColor(isDismissed ? .blue : .red)
+                }
+#endif
             }
         }
     }
@@ -367,7 +403,7 @@ struct AlertDetailView: View {
                         Spacer()
                     }
                     .padding()
-                    .background(Color(.systemGray6))
+                    .background(Color(UIColor.systemGray6))
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                 }
             }
@@ -401,7 +437,7 @@ struct AlertDetailView: View {
                 }
                 .frame(maxWidth: .infinity)
                 .padding()
-                .background(Color(.systemGray5))
+                .background(Color(UIColor.systemGray5))
                 .foregroundColor(.primary)
                 .clipShape(RoundedRectangle(cornerRadius: 12))
             }

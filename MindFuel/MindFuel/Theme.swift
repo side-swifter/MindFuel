@@ -81,7 +81,7 @@ struct MindFuelShadow {
 struct MindFuelCardStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .background(Color(.systemBackground))
+            .background(Color(UIColor.systemBackground))
             .clipShape(RoundedRectangle(cornerRadius: MindFuelRadius.md))
             .shadow(
                 color: MindFuelShadow.light,
